@@ -28,3 +28,9 @@ python ./odoo/odoo-bin -c ./odoo.conf -d curso_odoo -i base
 ```
 Wait until it says `Registry loaded in 100.150s`
 6. Enter localhost:8069 with credentials admin and admin_passwd (from `odoo.conf`)
+
+# Run / debug setup in PyCharm
+1. Select script `./odoo/odoo-bin`
+2. Enter working parameters `-c ./odoo.conf -d curso_odoo -i base`
+3. Enter working directory `./`
+
