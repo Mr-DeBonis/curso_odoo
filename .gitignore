@@ -82,3 +82,4 @@ ChangeLog
 
 # Odoo conf
 odoo.conf
+.env

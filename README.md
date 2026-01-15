@@ -1,21 +1,30 @@
 # Installation
-1. Run odoo community with 
+1. Install odoo requirements:
 ```
-docker compose up
+python -m pip install -r ./odoo/requirements.txt setuptools
 ```
-2. Create `odoo.conf` file
+2. Create `.env` file
+```
+DB_PASSWORD=*****
+ODOO_ADMIN_PASSWORD=*****
+```
+3. Create `odoo.conf` file
 ```
 [options]
 addons_path=./odoo/addons,./odoo/odoo/addons
-admin_passwd==****
+admin_passwd=*****
 db_host=localhost
-db_post==****
+db_post=5432
 db_user=odoo
-db_password=****
-
+db_password=*****
 ```
-3. Create database with 
+4. Run odoo community with 
+```
+docker compose up
+```
+5. Create database with 
 ```
 python ./odoo/odoo-bin -c ./odoo.conf -d curso_odoo -i base
 ```
-3. Entrar a localhost:8069 con credenciales admin/admin
+Wait until it says `Registry loaded in 100.150s`
+6. Enter localhost:8069 with credentials admin and admin_passwd (from `odoo.conf`)
