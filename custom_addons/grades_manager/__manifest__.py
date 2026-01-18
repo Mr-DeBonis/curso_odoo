@@ -10,6 +10,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/grades_manager_menus.xml',
+        'views/grades_course_views.xml',
     ],
     'license': 'AGPL-3',
     'application': True,
