@@ -4,4 +4,21 @@
         <field name="res_model">grades.course</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <record id="grades_course_tree_view" model="ir.ui.view">
+        <field name="name">grades.course.tree</field>
+        <field name="model">grades.course</field>
+        <field name="arch" type="xml">
+            <tree string="Courses">
+                <field name="name"/>
+                <field name="student_qty"/>
+                <field name="description"/>
+                <field name="is_active"/>
+                <field name="course_start"/>
+                <field name="course_end"/>
+                <field name="last_evaluation_date"/>
+                <field name="course_shift"/>
+            </tree>
+        </field>
+    </record>
 </odoo>
