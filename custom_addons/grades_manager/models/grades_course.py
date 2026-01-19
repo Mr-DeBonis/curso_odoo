@@ -6,7 +6,6 @@ class GradesCourse(models.Model):
     _name = 'grades.course'
     _description = 'Grades Course'
 
-
     name = fields.Char(string='Name')
     student_qty = fields.Integer(String='Student quantity')
     grades_average = fields.Float(String='Grades average')
@@ -17,3 +16,4 @@ class GradesCourse(models.Model):
     last_evaluation_date = fields.Datetime(string='Last evaluation date')
     course_image = fields.Binary(string='Course image')
     course_shift = fields.Selection([('day', 'Day'), ('night', 'Night')], string='Course shift')
+    teacher_id = fields.Many2one('res.partner', string='Teacher')
