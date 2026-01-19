@@ -51,6 +51,7 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="grades_manager.teacher_tree_view"/>
         <field name="view_ids" ref="grades_manager.teacher_form_view"/>
+        <field name="domain">[('is_teacher', '=', True)]</field>
         <field name="view_ids"
                eval="[(5,0,0),
                       (0, 0, {'view_mode': 'tree', 'view_id': ref('teacher_tree_view')}),
