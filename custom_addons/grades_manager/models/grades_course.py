@@ -18,3 +18,4 @@ class GradesCourse(models.Model):
     course_shift = fields.Selection([('day', 'Day'), ('night', 'Night')], string='Course shift')
     teacher_id = fields.Many2one('res.partner', string='Teacher')
     evaluation_ids = fields.One2many('grades.evaluation', 'course_id', string='Evaluations')
+    student_ids = fields.Many2many('res.partner', 'grades_course_students_rel', string='Students')

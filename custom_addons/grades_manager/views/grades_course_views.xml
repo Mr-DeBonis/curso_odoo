@@ -38,6 +38,7 @@
                             <field name="course_end"/>
                             <field name="teacher_id"/>
                             <field name="evaluation_ids"/>
+                            <field name="student_ids"/>
                         </group>
                         <group>
                             <field name="course_image"/>
