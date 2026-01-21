@@ -34,3 +34,7 @@ Wait until it says `Registry loaded in 100.150s`
 2. Enter working parameters `-c ./odoo.conf -d curso_odoo -i base`
 3. Enter working directory `./`
 
+# Start Shell
+```
+python odoo/odoo-bin shell -c odoo.conf -d curso_odoo 
+```
