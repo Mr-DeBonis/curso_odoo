@@ -32,11 +32,11 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="name" required="1"/>
                             <field name="description"/>
-                            <field name="course_start"/>
-                            <field name="course_end"/>
-                            <field name="teacher_id" domain="[('is_teacher', '=',True)]"/>
+                            <field name="course_start" required="1"/>
+                            <field name="course_end" required="1"/>
+                            <field name="teacher_id" domain="[('is_teacher', '=',True)]" required="1"/>
                             <field name="evaluation_ids"/>
                             <field name="student_ids" domain="[('is_student', '=',True)]"/>
                         </group>
@@ -44,8 +44,9 @@
                             <field name="course_image"/>
                             <field name="student_qty"/>
                             <field name="is_active"/>
-                            <field name="last_evaluation_date"/>
+                            <field name="last_evaluation_date" readonly="1"/>
                             <field name="course_shift"/>
+                            <field name="create_uid" invisible="1"/>
                         </group>
                     </group>
                 </sheet>
