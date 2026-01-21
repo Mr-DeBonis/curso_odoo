@@ -35,9 +35,9 @@
             <form string="Teacher">
                 <sheet>
                     <group>
-                        <field name="display_name"/>
+                        <field name="name" required="1"/>
                         <field name="phone"/>
-                        <field name="email"/>
+                        <field name="email" required="1"/>
                         <field name="is_teacher"/>
                         <field name="is_freelance"/>
                     </group>
@@ -66,9 +66,9 @@
             <form string="Students">
                 <sheet>
                     <group>
-                        <field name="display_name"/>
+                        <field name="name" required="1"/>
                         <field name="phone"/>
-                        <field name="email"/>
+                        <field name="email" required="1"/>
                         <field name="is_student"/>
                     </group>
                 </sheet>
@@ -83,6 +83,7 @@
         <field name="view_id" ref="grades_manager.teacher_tree_view"/>
         <field name="view_ids" ref="grades_manager.teacher_form_view"/>
         <field name="domain">[('is_teacher', '=', True)]</field>
+        <field name="context">{'default_is_teacher': True}</field>
         <field name="view_ids"
                eval="[(5,0,0),
                       (0, 0, {'view_mode': 'tree', 'view_id': ref('teacher_tree_view')}),
@@ -97,6 +98,7 @@
         <field name="view_id" ref="grades_manager.student_tree_view"/>
         <field name="view_ids" ref="grades_manager.student_form_view"/>
         <field name="domain">[('is_student', '=', True)]</field>
+        <field name="context">{'default_is_student': True}</field>
         <field name="view_ids"
                eval="[(5,0,0),
                       (0, 0, {'view_mode': 'tree', 'view_id': ref('student_tree_view')}),
