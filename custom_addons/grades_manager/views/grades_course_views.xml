@@ -43,6 +43,7 @@
                                    readonly="state != 'register'"
                                    context="{'tree_view_ref': 'grades_manager.teacher_tree_view',
                                              'form_view_ref': 'grades_manager.teacher_form_view'}"/>
+                            <field name="teacher_email" string="Teacher email" readonly="0"/>
                         </group>
                         <group invisible="state == 'register'">
                             <field name="course_image"/>

@@ -22,6 +22,7 @@ class GradesCourse(models.Model):
     course_image = fields.Binary(string='Course image')
     course_shift = fields.Selection([('day', 'Day'), ('night', 'Night')], string='Course shift')
     teacher_id = fields.Many2one('res.partner', string='Teacher', default=_default_teacher_id)
+    teacher_email = fields.Char(related='teacher_id.email', store=True)
     evaluation_ids = fields.One2many('grades.evaluation', 'course_id', string='Evaluations')
     student_ids = fields.Many2many('res.partner', 'grades_course_students_rel', string='Students')
     state = fields.Selection([('register', 'Register'), ('in_progress', 'In progress'), ('finished', 'Finished')],
