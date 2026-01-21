@@ -29,6 +29,9 @@
         <field name="model">grades.course</field>
         <field name="arch" type="xml">
             <form string="Course">
+                <header>
+                    <field  name="state" widget="statusbar" options="{'clickable': 1}"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
@@ -36,11 +39,11 @@
                             <field name="description"/>
                             <field name="course_start" required="1"/>
                             <field name="course_end" required="1"/>
-                            <field name="teacher_id" domain="[('is_teacher', '=',True)]" required="1"/>
-                            <field name="evaluation_ids"/>
-                            <field name="student_ids" domain="[('is_student', '=',True)]"/>
+                            <field name="teacher_id" domain="[('is_teacher', '=',True)]" required="1" readonly="state != 'register'"/>
+                            <field name="evaluation_ids" readonly="state != 'register'"/>
+                            <field name="student_ids" domain="[('is_student', '=',True)]" readonly="state != 'register'"/>
                         </group>
-                        <group>
+                        <group invisible="state == 'register'">
                             <field name="course_image"/>
                             <field name="student_qty"/>
                             <field name="is_active"/>
