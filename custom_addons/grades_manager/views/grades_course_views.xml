@@ -46,7 +46,7 @@
                         </group>
                         <group invisible="state == 'register'">
                             <field name="course_image"/>
-                            <field name="student_qty"/>
+                            <field name="student_qty" readonly="0"/>
                             <field name="is_active"/>
                             <field name="last_evaluation_date" readonly="1"/>
                             <field name="course_shift"/>

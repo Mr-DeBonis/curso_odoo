@@ -12,7 +12,7 @@ class GradesCourse(models.Model):
         return teacher.id
 
     name = fields.Char(string='Name')
-    student_qty = fields.Integer(string='Student quantity')
+    student_qty = fields.Integer(string='Student quantity', readonly=True)
     grades_average = fields.Float(string='Grades average')
     description = fields.Text(string='Description')
     is_active = fields.Boolean(string='Is active')
