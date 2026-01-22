@@ -1,5 +1,5 @@
-from odoo import models
-from odoo import fields
+from odoo import models, fields
+from odoo.exceptions import ValidationError
 
 
 class GradesCourse(models.Model):
@@ -27,3 +27,10 @@ class GradesCourse(models.Model):
     student_ids = fields.Many2many('res.partner', 'grades_course_students_rel', string='Students')
     state = fields.Selection([('register', 'Register'), ('in_progress', 'In progress'), ('finished', 'Finished')],
                              string='State', default='register')
+
+    def write(self, vals):
+        if vals and 'evaluation_ids' in vals and not self.student_ids:
+            raise ValidationError('There are no students for this course')
+        result = super(GradesCourse, self).write(vals)
+        return result
+        
