@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
@@ -27,6 +27,7 @@ class GradesCourse(models.Model):
     student_ids = fields.Many2many('res.partner', 'grades_course_students_rel', string='Students')
     state = fields.Selection([('register', 'Register'), ('in_progress', 'In progress'), ('finished', 'Finished')],
                              string='State', default='register')
+    invalid_dates = fields.Boolean(string='Invalid dates')
 
     def write(self, vals):
         if vals and 'evaluation_ids' in vals and not self.student_ids:
@@ -34,3 +35,9 @@ class GradesCourse(models.Model):
         result = super(GradesCourse, self).write(vals)
         return result
         
+    @api.onchange('course_start', 'course_end')
+    def onchange_dates(self):
+        if self.course_start >= self.course_end:
+            self.invalid_dates = True
+        else:
+            self.invalid_dates = False
