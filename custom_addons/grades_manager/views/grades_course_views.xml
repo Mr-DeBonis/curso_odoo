@@ -47,7 +47,7 @@
                                              'form_view_ref': 'grades_manager.teacher_form_view'}"/>
                             <field name="teacher_email" string="Teacher email" readonly="0"/>
                         </group>
-                        <group invisible="state == 'register'">
+                        <group>
                             <field name="course_image"/>
                             <field name="student_qty" readonly="0"/>
                             <field name="is_active"/>

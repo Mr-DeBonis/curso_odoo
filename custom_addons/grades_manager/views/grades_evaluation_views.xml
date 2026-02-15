@@ -12,7 +12,6 @@
             <tree string="evaluation">
                 <field name="name"/>
                 <field name="date"/>
-                <field name="course_id"/>
                 <field name="observations"/>
             </tree>
         </field>

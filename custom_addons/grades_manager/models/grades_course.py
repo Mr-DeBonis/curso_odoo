@@ -12,13 +12,14 @@ class GradesCourse(models.Model):
         return teacher.id
 
     name = fields.Char(string='Name')
-    student_qty = fields.Integer(string='Student quantity', readonly=True)
+    student_qty = fields.Integer(string='Student quantity', compute='_computed_student_qty', store=True)
     grades_average = fields.Float(string='Grades average')
     description = fields.Text(string='Description')
     is_active = fields.Boolean(string='Is active')
     course_start = fields.Date(string='Course start', default=fields.Date.today())
     course_end = fields.Date(string='Course end')
-    last_evaluation_date = fields.Datetime(string='Last evaluation date')
+    last_evaluation_date = fields.Date(string='Last evaluation date', compute='_computed_last_evaluation_date',
+                                           store=True)
     course_image = fields.Binary(string='Course image')
     course_shift = fields.Selection([('day', 'Day'), ('night', 'Night')], string='Course shift')
     teacher_id = fields.Many2one('res.partner', string='Teacher', default=_default_teacher_id)
@@ -41,3 +42,14 @@ class GradesCourse(models.Model):
             self.invalid_dates = True
         else:
             self.invalid_dates = False
+
+    @api.depends('evaluation_ids.date')
+    def _computed_last_evaluation_date(self):
+        for course in self:
+            evaluation = course.evaluation_ids[-1]
+            course.last_evaluation_date = evaluation.date
+
+    @api.depends('student_ids')
+    def _computed_student_qty(self):
+        for course in self:
+            course.student_qty = len(course.student_ids)
