@@ -38,7 +38,7 @@ class GradesCourse(models.Model):
         
     @api.onchange('course_start', 'course_end')
     def onchange_dates(self):
-        if self.course_start >= self.course_end:
+        if (self.course_start and self.course_end) and (self.course_start >= self.course_end):
             self.invalid_dates = True
         else:
             self.invalid_dates = False
@@ -46,8 +46,9 @@ class GradesCourse(models.Model):
     @api.depends('evaluation_ids.date')
     def _computed_last_evaluation_date(self):
         for course in self:
-            evaluation = course.evaluation_ids[-1]
-            course.last_evaluation_date = evaluation.date
+            if course.evaluation_ids:
+                evaluation = course.evaluation_ids[-1]
+                course.last_evaluation_date = evaluation.date
 
     @api.depends('student_ids')
     def _computed_student_qty(self):
