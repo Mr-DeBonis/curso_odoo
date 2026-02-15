@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class GradesGrade(models.Model):
@@ -9,3 +10,9 @@ class GradesGrade(models.Model):
     value = fields.Integer(String='Value')
     date = fields.Date(String='Date', default=fields.Date.today())
     evaluation_id = fields.Many2one('grades.evaluation', String='Evaluation', readonly=True)
+
+    @api.constrains('value')
+    def _check_value(self):
+        for grade in self:
+            if grade.value < 0 or grade.value > 10:
+                raise ValidationError("The grade has to be from 0 to 10")
