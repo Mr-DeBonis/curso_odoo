@@ -29,6 +29,7 @@ class GradesCourse(models.Model):
     state = fields.Selection([('register', 'Register'), ('in_progress', 'In progress'), ('finished', 'Finished')],
                              string='State', default='register')
     invalid_dates = fields.Boolean(string='Invalid dates')
+    type = fields.Selection([('basic', 'Basic'), ('advanced', 'Advanced')], string='Type', default='basic')
 
     def write(self, vals):
         if vals and 'evaluation_ids' in vals and not self.student_ids:
