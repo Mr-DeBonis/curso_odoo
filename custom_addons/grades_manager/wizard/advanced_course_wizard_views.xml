@@ -6,9 +6,21 @@
             <form string="Advanced course create">
                 <sheet>
                     <group>
-                        <field name="teacher_id"/>
+                        <field name="available_student_ids" invisible="1"/>
+                        <field name="course_name" required="1"/>
+                        <field name="teacher_id" domain="[('is_teacher', '=', True)]" required="1"/>
+                        <field name="student_ids" domain="[('id', '=', available_student_ids)]">
+                            <tree>
+                                <field name="name"/>
+                                <field name="vat"/>
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
+                <footer>
+                    <button class="btn btn-primary" name="create_course" type="object" string="Create"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
             </form>
         </field>
     </record>
