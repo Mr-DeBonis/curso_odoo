@@ -31,6 +31,15 @@ class GradesCourse(models.Model):
     invalid_dates = fields.Boolean(string='Invalid dates')
     type = fields.Selection([('basic', 'Basic'), ('advanced', 'Advanced')], string='Type', default='basic')
 
+    def action_advanced_course_wizard(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Create advanced course",
+            "res_model": "advanced.course.wizard",
+            "view_mode": "form",
+            "target": "new",
+        }
+
     def write(self, vals):
         if vals and 'evaluation_ids' in vals and not self.student_ids:
             raise ValidationError('There are no students for this course')
